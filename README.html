@@ -1,0 +1,103 @@
+﻿<body>
+    <div style="font-size: medium;">
+        <!-- <h1 id="初探-notebooklm--中文-vidwo以-醫療機構電子病歷製作及管理辦法-為例">初探 NotebookLM + 中文 Vidwo：以 醫療機構電子病歷製作及管理辦法 為例</h1> -->
+        <h2 id="前言">前言</h2>
+        <p>延續前一篇: <a href="https://www.jasperstudy.com/2025/02/notebooklm.html" target="_blank">初探 NotebookLM：以 醫療機構電子病歷製作及管理辦法 為例</a> 有提到 NotebookLM 可以產生 2 位主持人對話的 &quot;語音檔&quot; (Audio). 2025/05 已可產生中文版的對話. 故將前一篇留下的產出 &quot;影音檔&quot; (Video) 的部分, 進行演練.</p>
+        <p>依前一篇的內容, 將 醫療機構電子病歷製作及管理辦法.pdf 匯入至 NotebookLM 之後, 即可進行以下步驟.</p>
+        <h2 id="產生中文的-語音-對話-audio">產生中文的 &quot;語音&quot; 對話 (Audio)</h2>
+        <h3 id="step-1-設定產生中文對話">STEP 1: 設定產生中文對話</h3>
+        <p>設定 &gt; 輸出內容語言 &gt; 選擇 中文(繁體)<br />
+            <img src="pictures/01-1-%E8%A8%AD%E5%AE%9A%E5%B0%8D%E8%A9%B1%E7%82%BA%E4%B8%AD%E6%96%87.png" alt="01 1 設定對話為中文" /><br />
+            <img src="pictures/01-2-%E8%A8%AD%E5%AE%9A%E5%B0%8D%E8%A9%B1%E7%82%BA%E4%B8%AD%E6%96%87.png" alt="01 2 設定對話為中文" /></p>
+        <h3 id="step-2-生成語音檔">STEP 2: 生成語音檔</h3>
+        <p>目前只支援產出 .wav 的格式.<br />
+            <img src="pictures/02-%E7%94%9F%E6%88%90%E8%AA%9E%E9%9F%B3%E6%AA%94.png" alt="02 生成語音檔" /></p>
+        <h3 id="step-3-下載至本機">STEP 3: 下載至本機</h3>
+        <h2 id="產生字幕檔">產生字幕檔</h2>
+        <p>雖然 Whisper 有雲端版, 可以使用; 但還是決定用本機版的.</p>
+        <h3 id="step-1-下載-whisperdesktop">STEP 1: 下載 WhisperDesktop</h3>
+        <ul>
+            <li><a href="https://github.com/Const-me/Whisper/releases/tag/1.12.0" target="_blank">(GitHub) Whisper Desktop 1.12.0 下載 </a></li>
+        </ul>
+        <h3 id="step-2-下載-whisperdesktop-ggml-模組">STEP 2: 下載 WhisperDesktop ggml 模組</h3>
+        <p>選取 ggml-medium.bin 即可.</p>
+        <ul>
+            <li><a href="https://huggingface.co/ggerganov/whisper.cpp/tree/main" target="_blank">(Hugging Face) WhisperDesktop ggml 語言模組 下載</a></li>
+        </ul>
+        <h3 id="step-3-安裝">STEP 3: 安裝</h3>
+        <p>將 WhisperDesktop 下載檔, 解壓縮至固定資料夾下 ( ex: D:\Software.Run\WhisperDesktop\ ), 並將前述 ggml-medium.bin 也複製到同一個資料夾, 這樣就可以執行 WhisperDesktop 了.</p>
+        <p>細節可以參考 <a href="https://www.youtube.com/watch?v=-XY_8HWiwno" target="_blank">(影片)(諾特斯) AI 上字幕教學｜OpenAI Whisper 教學｜免費自動字幕 (逐字稿) 生成軟體 WhisperDesktop</a></p>
+        <h3 id="step-4-製作字幕">STEP 4: 製作字幕</h3>
+        <ul>
+            <li>Languaage: Chinese</li>
+            <li>Transcribe File: 前述下載的 .wav 檔</li>
+            <li>Output Format: .srt</li>
+            <li>[v] Place that file to the input folder</li>
+        </ul>
+        <p><img src="pictures/11-%E7%94%9F%E6%88%90%E5%AD%97%E5%B9%95.png" alt="11 生成字幕" /></p>
+        <p>當然, 字幕還是需要作校對, 但可以用 ChatGPT 輔助, 幫忙找出可能的錯字.</p>
+        <h2 id="產生中文的-影音-對話-video">產生中文的 &quot;影音&quot; 對話 (Video)</h2>
+        <p>由於 .wav 不能夠直接搭配 .srt; 必須要有一個靜態的圖片檔 (.png or .jpg), 與 .wav 整合成 .mp4, 才能搭配 .srt 的字幕檔.</p>
+        <h3 id="step-1-產生靜態的-png">STEP 1: 產生靜態的 .png</h3>
+        <p>利用 PowerPoint 建立只有第1張投影片的 .pptx 檔; 之後再 [另存新檔], 選取 .png 的輸出格式即可.</p>
+        <p><img src="pictures/%E9%9B%BB%E5%AD%90%E7%97%85%E6%AD%B7%E8%A3%BD%E4%BD%9C%E5%8F%8A%E7%AE%A1%E7%90%86%E8%BE%A6%E6%B3%95.png" alt="電子病歷製作及管理辦法" /></p>
+        <h3 id="step-2-製作-mp4">STEP 2: 製作 .mp4</h3>
+        <p>利用 ffmpeg 工具, 將 .png 及 .wav 整合, 產出 .mp4 檔案.
+            對於指令細節有興趣者, 可以請 ChatGPT 作解釋.</p>
+        <pre><code class="language-bash">ffmpeg -loop 1 -i 電子病歷製作及管理辦法.png -i 20250516-醫療機構電子病歷管理辦法.wav \
+       -c:v libx264 -pix_fmt yuv420p \
+       -c:a aac -b:a 192k \
+       -shortest 20250516-醫療機構電子病歷管理辦法.mp4
+</code></pre>
+        <h3 id="step-3-播放-mp4">STEP 3: 播放 .mp4</h3>
+        <p>Windows 系統有內建 Windowds Media Player 可以播放, 但預設不會開啟 .srt 檔, 要自行作設定.</p>
+        <p><img src="pictures/12-WindowsMediaPlayer%E5%AD%97%E5%B9%95%E8%A8%AD%E5%AE%9A.png" alt="12 WindowsMediaPlayer字幕設定" /></p>
+        <h2 id="將字幕內嵌於影片-軟字幕">將字幕內嵌於影片 (軟字幕)</h2>
+        <p>播放時要額外設定 Windows Media Player 的字幕檔, 看來有點麻煩.<br />
+            或許, 可以考慮把字幕內嵌於影片; 把 .srt 變成檔案內的獨立字幕軌.</p>
+        <p>注意: Windows Media Player 對內嵌字幕支援極差; 經實測, 以下指令產出的 .mkv 檔, 在 Windows Media Player 是看不到字幕的. 可改為直接燒錄硬字幕.</p>
+        <pre><code class="language-bash">ffmpeg -i 20250516-醫療機構電子病歷管理辦法.mp4 \
+       -i 20250516-醫療機構電子病歷管理辦法.srt \
+       -c copy 20250516-醫療機構電子病歷管理辦法.mkv
+</code></pre>
+        <h2 id="將字幕內嵌於影片-硬字幕">將字幕內嵌於影片 (硬字幕)</h2>
+        <p>指令如下:</p>
+        <pre><code class="language-bash">ffmpeg -i 20250516-醫療機構電子病歷管理辦法.mp4 \
+       -vf &quot;subtitles=20250516-醫療機構電子病歷管理辦法.srt&quot; \
+       -c:v libx264 -crf 18 -preset medium \
+       -c:a copy 20250516-醫療機構電子病歷管理辦法-硬字幕.mp4
+</code></pre>
+        <p>播放截圖如下:</p>
+        <p><img src="pictures/21-WindowsMediaPlayer%E7%A1%AC%E5%AD%97%E5%B9%95%E6%92%AD%E6%94%BE%E6%88%AA%E5%9C%96.png" alt="21 WindowsMediaPlayer硬字幕播放截圖" /></p>
+        <h2 id="結論">結論</h2>
+        <p>NotebookLM 可以支援產生中文 &quot;語音&quot;, 真的很不錯, 如果可以直接產生 &quot;影音&quot; + &quot;字幕&quot; 的話, 會更好.</p>
+        <p>這整個過程中, 最複雜的是 ffmpeg 的指令參數, 還好有 ChatGPT 幫忙, 才得以順利完成.</p>
+        <p>文中的 ffmpeg 指令, 如果有疑義, 也可以問 ChatGPT.</p>
+        <h2 id="參考文件">參考文件</h2>
+        <ul>
+            <li>
+                <p><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=L0020121" target="_blank">(全國法規資料庫) 醫療機構電子病歷製作及管理辦法</a></p>
+            </li>
+            <li>
+                <p><a href="https://www.bnext.com.tw/article/81728/notebooklm-tutorial" target="_blank">(數位時代) NotebookLM教學｜NotebookLM是什麼？如何快速消化大量文本、生成摘要？</a></p>
+            </li>
+            <li>
+                <p><a href="https://www.youtube.com/watch?v=C6XS8WM_Ias" target="_blank">(影片)(雲云工作室) (Youtube) NotebookLM 語音轉文字逐字稿</a></p>
+            </li>
+        </ul>
+        <blockquote>
+            <p>2025.05 起, 已支援產生 中文語音 對話</p>
+        </blockquote>
+        <ul>
+            <li>
+                <p><a href="https://www.youtube.com/watch?v=-XY_8HWiwno" target="_blank">(影片)(諾特斯) AI 上字幕教學｜OpenAI Whisper 教學｜免費自動字幕 (逐字稿) 生成軟體 WhisperDesktop</a></p>
+            </li>
+            <li>
+                <p><a href="https://vocus.cc/article/64701a2cfd897800014daed0" target="_blank">(DAN) FFMPEG 安裝教學(windows)</a></p>
+            </li>
+            <li>
+                <p><a href="https://blog.miniasp.com/post/2022/10/08/Useful-tool-FFmpeg" target="_blank">(Will 保哥) 介紹好用工具：FFmpeg (強大的錄影、轉檔、串流工具與函式庫)</a></p>
+            </li>
+        </ul>
+    </div>
+</body>
