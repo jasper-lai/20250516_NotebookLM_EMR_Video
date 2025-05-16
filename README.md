@@ -1,12 +1,14 @@
-# 初探 NotebookLM + 中文 Vidwo：以 醫療機構電子病歷製作及管理辦法 為例
+# 初探 NotebookLM + 中文 Video：以 醫療機構電子病歷製作及管理辦法 為例
 
-## 前言
+## 一. 前言
 
 延續前一篇: <a href="https://www.jasperstudy.com/2025/02/notebooklm.html" target="_blank">初探 NotebookLM：以 醫療機構電子病歷製作及管理辦法 為例</a> 有提到 NotebookLM 可以產生 2 位主持人對話的 "語音檔" (Audio). 2025/05 已可產生中文版的對話. 故將前一篇留下的產出 "影音檔" (Video) 的部分, 進行演練.  
 
 依前一篇的內容, 將 醫療機構電子病歷製作及管理辦法.pdf 匯入至 NotebookLM 之後, 即可進行以下步驟.
 
-## 產生中文的 "語音" 對話 (Audio)
+<!-- more -->
+
+## 二. 產生中文的 "語音" 對話 (Audio)
 
 ### STEP 1: 設定產生中文對話
 
@@ -21,7 +23,7 @@
 
 ### STEP 3: 下載至本機
 
-## 產生字幕檔
+## 三. 產生字幕檔
 
 雖然 Whisper 有雲端版, 可以使用; 但還是決定用本機版的.  
 
@@ -51,7 +53,7 @@
 
 當然, 字幕還是需要作校對, 但可以用 ChatGPT 輔助, 幫忙找出可能的錯字.  
 
-## 產生中文的 "影音" 對話 (Video)
+## 四. 產生中文的 "影音" 對話 (Video)
 
 由於 .wav 不能夠直接搭配 .srt; 必須要有一個靜態的圖片檔 (.png or .jpg), 與 .wav 整合成 .mp4, 才能搭配 .srt 的字幕檔.  
 
@@ -79,7 +81,7 @@ Windows 系統有內建 Windowds Media Player 可以播放, 但預設不會開�
 
 ![12 WindowsMediaPlayer字幕設定](pictures/12-WindowsMediaPlayer字幕設定.png)  
 
-## 將字幕內嵌於影片 (軟字幕)
+## 五. 將字幕內嵌於影片 (軟字幕)
 
 播放時要額外設定 Windows Media Player 的字幕檔, 看來有點麻煩.  
 或許, 可以考慮把字幕內嵌於影片; 把 .srt 變成檔案內的獨立字幕軌.  
@@ -92,7 +94,7 @@ ffmpeg -i 20250516-醫療機構電子病歷管理辦法.mp4 \
        -c copy 20250516-醫療機構電子病歷管理辦法.mkv
 ```
 
-## 將字幕內嵌於影片 (硬字幕)
+## 六. 將字幕內嵌於影片 (硬字幕)
 
 指令如下:  
 
@@ -107,7 +109,7 @@ ffmpeg -i 20250516-醫療機構電子病歷管理辦法.mp4 \
 
 ![21 WindowsMediaPlayer硬字幕播放截圖](pictures/21-WindowsMediaPlayer硬字幕播放截圖.png)  
 
-## 結論
+## 七. 結論
 
 NotebookLM 可以支援產生中文 "語音", 真的很不錯, 如果可以直接產生 "影音" + "字幕" 的話, 會更好.  
 
